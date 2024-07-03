@@ -9,31 +9,36 @@ function MainComponent() {
   const [userState, setUserState] = useState({ users: [] });
   const [editingUser, setEditingUser] = useState(null);
 
-  const handleSubmit = ({ name, email }) => {
-    if (editingUser) {
-      db.editUser(editingUser.id, { name, email })
-        .then(() => {
-          setEditingUser(null);
-          getUsers();
-        })
-        .catch((error) => console.error(error));
-    } else {
-      db.addUser({ name, email })
-        .then(() => getUsers())
-        .catch((error) => console.error(error));
+  const handleSubmit = async ({ name, email }) => {
+    try {
+      if (editingUser) {
+        await db.editUser(editingUser.id, { name, email });
+        setEditingUser(null);
+      } else {
+        await db.addUser({ name, email });
+      }
+      await getUsers();
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const handleDeleteUser = (id) => {
-    db.deleteUser(id)
-      .then(() => getUsers())
-      .catch((error) => console.error(error));
+  const handleDeleteUser = async (id) => {
+    try {
+      await db.deleteUser(id);
+      await getUsers();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const getUsers = () => {
-    db.getUsers()
-      .then((users) => setUserState({ users }))
-      .catch((error) => console.error(error));
+  const getUsers = async () => {
+    try {
+      const users = await db.getUsers();
+      setUserState({ users });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleEditUser = (user) => {
