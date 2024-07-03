@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Setup/Installations
 * Install dependencies 
   * for server : ``npm install``
@@ -71,3 +72,6 @@
 ### Bonus level
 - [ ] Maintain separate reducer - create and manage a separate reducer for storing the details of the currently edited user.
 - [ ] Add Confirmation for Deletion - implement a confirmation dialog that asks for user approval before deleting a user entry.
+=======
+# frontend_task-2
+>>>>>>> e1f238ebaabca0935b88c6b4a7f7605ae6dd459d
