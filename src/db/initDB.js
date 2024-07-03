@@ -13,7 +13,7 @@ function initiateDB() {
 
   request.onsuccess = (event) => {
     db = event.target.result;
-    console.log("IndexedDB reasy to use!");
+    console.log("IndexedDB ready to use!");
   };
 
   request.onupgradeneeded = (event) => {
